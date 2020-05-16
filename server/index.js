@@ -1,5 +1,7 @@
 const router = require('express').Router();
-//const db = require('../db/index')
+const userRoutes = require('./routes/user.route')
+
+router.use(userRoutes)
 
 router.use((err, req, res, next) => {
     if (err.name === 'UnauthorizedError') {
@@ -9,10 +11,11 @@ router.use((err, req, res, next) => {
   });
 
 router.get('/', (req, res) => {
-    //console.log(db.get().collection('planet').find({}))
-    res.status(200).json({msg: "Server up and running"})
+    req.servermsg = {msg: "Server up and running"}
+    res.status(200).json(req.servermsg)
 });
-  //após tentar casar todas as rotas a ultima rota que sobrou é not found
+
+//após tentar casar todas as rotas a ultima rota que sobrou é not found
 router.get('*', (req, res) => {
     res.status(404).json({ errors: [{msg: "Not found"}]});
 });
