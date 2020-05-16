@@ -1,4 +1,7 @@
 #!/usr/bin/env node
 const app = require('../app');
-app.listen(process.env.PORT);
-console.log('Microsservice login listening at http://localhost:%s', process.env.PORT);
+const dbinstance = require('../db/index')
+dbinstance.connect(() => {
+    app.listen(process.env.PORT);
+    console.log('Microsservice login listening at http://localhost:%s', process.env.PORT);
+});
