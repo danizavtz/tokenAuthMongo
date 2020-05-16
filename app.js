@@ -3,6 +3,7 @@ const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
 const expressJwt = require('express-jwt');
+const mongoinstance = require('./db/index')
 
 const app = express();
 app.disable('x-powered-by');
