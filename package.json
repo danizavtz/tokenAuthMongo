@@ -1,0 +1,44 @@
+{
+  "name": "tokenauthmongo",
+  "version": "1.0.0",
+  "description": "generate jwt token and persist in mongodb",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon ./bin/www",
+    "start": "node ./bin/www",
+    "lint": "./node_modules/.bin/eslint ./server/**/*.js",
+    "test": "mocha --reporter spec test/ --exit",
+    "coverage": "nyc mocha --exit --reporter progress ./test/"
+  },
+  "keywords": [
+    "express",
+    "mongodb",
+    "jwt"
+  ],
+  "author": "danizavtz",
+  "license": "Apache-2.0",
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.0.0",
+    "express": "^4.17.1",
+    "express-jwt": "^5.3.3",
+    "express-validator": "^6.4.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.5.7",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^7.1.2",
+    "nodemon": "^2.0.4",
+    "nyc": "^15.0.1",
+    "supertest": "^4.0.2"
+  }
+}
