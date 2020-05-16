@@ -3,7 +3,7 @@ const url = `${process.env.MONGOHOST}:${process.env.MONGOPORT}`
 let dbinstance;
 
 // Use connect method to connect to the server
-function connect(callback) {
+connect = (callback) => {
     MongoClient.connect(url, { useUnifiedTopology: true }, (err, client) => {
         console.log("Connected successfully to mongo database instance");
         dbinstance = client.db(process.env.MONGONAME);
@@ -11,11 +11,11 @@ function connect(callback) {
     })
 }
 
-function get() {
+get = () => {
     return dbinstance;
 }
 
-function close() {
+close = () => {
     return dbinstance.close();
 }
 
