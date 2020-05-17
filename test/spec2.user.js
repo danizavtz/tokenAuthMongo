@@ -56,4 +56,160 @@ describe('#User', () => {
             })
         })
     })
+    describe('POST', () => {
+        it('Check post with success', (done) => {
+            api.post('/users')
+            .set('Accept', 'application/json; charset=utf-8')
+            .send({
+                nome: "nome1",
+                login: "login1",
+                senha: "123"
+            })
+            .expect(201)
+            .end((err, res) => {
+                if (err) throw err;
+                expect(res.header).to.have.property('location')
+                expect(res.header.location).not.equal(null)
+                done()
+            })
+        })
+    })
+    describe('PUT', () => {
+        it('Check put does not exist', (done) => {
+            api.put('/users/000000000000000000000000')
+            .set('Accept', 'application/json; charset=utf-8')
+            .send({
+                nome: "nome1",
+                login: "login1",
+                senha: "123"
+            })
+            .expect(404)
+            .end((err, res) => {
+                if (err) throw err;
+                expect(res.body).to.have.property('errors')
+                expect(res.body.errors).to.be.an('array')
+                expect(res.body.errors[0]).to.have.property('msg')
+                expect(res.body.errors[0].msg).equal('Not found')
+                done()
+            })
+        })
+        it('Check put update nome with success', (done) => {
+            api.put(`/users/${insertedUserId}`)
+            .set('Accept', 'application/json; charset=utf-8')
+            .send({
+                nome: "nome2",
+                login: "login1",
+                senha: "123"
+            })
+            .expect(200)
+            .end((err, res) => {
+                if (err) throw err;
+                expect(res.body).to.have.property('n')
+                expect(res.body.n).equal(1)
+                expect(res.body).to.have.property('nModified')
+                expect(res.body.nModified).equal(1)
+                expect(res.body).to.have.property('ok')
+                expect(res.body.ok).equal(1)
+                api.get(`/users/${insertedUserId}`)
+                .set('Accept', 'application/json; charset=utf-8')
+                .expect(200)
+                .end((err, res) => {
+                    if (err) throw err
+                   expect(res.body).to.have.property('nome')
+                   expect(res.body.nome).equal('nome2')
+                   expect(res.body).to.have.property('login')
+                   expect(res.body.login).equal('login1')
+                   expect(res.body).to.have.property('senha')
+                   expect(res.body.senha).equal('123')
+                   done()
+                })
+            })
+        })
+        it('Check put update login with success', (done) => {
+            api.put(`/users/${insertedUserId}`)
+            .set('Accept', 'application/json; charset=utf-8')
+            .send({
+                nome: "nome2",
+                login: "login2",
+                senha: "123"
+            })
+            .expect(200)
+            .end((err, res) => {
+                if (err) throw err;
+                expect(res.body).to.have.property('n')
+                expect(res.body.n).equal(1)
+                expect(res.body).to.have.property('nModified')
+                expect(res.body.nModified).equal(1)
+                expect(res.body).to.have.property('ok')
+                expect(res.body.ok).equal(1)
+                api.get(`/users/${insertedUserId}`)
+                .set('Accept', 'application/json; charset=utf-8')
+                .expect(200)
+                .end((err, res) => {
+                    if (err) throw err
+                   expect(res.body).to.have.property('nome')
+                   expect(res.body.nome).equal('nome2')
+                   expect(res.body).to.have.property('login')
+                   expect(res.body.login).equal('login2')
+                   expect(res.body).to.have.property('senha')
+                   expect(res.body.senha).equal('123')
+                   done()
+                })
+            })
+        })
+        it('Check put update senha with success', (done) => {
+            api.put(`/users/${insertedUserId}`)
+            .set('Accept', 'application/json; charset=utf-8')
+            .send({
+                nome: "nome2",
+                login: "login2",
+                senha: "1234"
+            })
+            .expect(200)
+            .end((err, res) => {
+                if (err) throw err;
+                expect(res.body).to.have.property('n')
+                expect(res.body.n).equal(1)
+                expect(res.body).to.have.property('nModified')
+                expect(res.body.nModified).equal(1)
+                expect(res.body).to.have.property('ok')
+                expect(res.body.ok).equal(1)
+                api.get(`/users/${insertedUserId}`)
+                .set('Accept', 'application/json; charset=utf-8')
+                .expect(200)
+                .end((err, res) => {
+                    if (err) throw err
+                   expect(res.body).to.have.property('nome')
+                   expect(res.body.nome).equal('nome2')
+                   expect(res.body).to.have.property('login')
+                   expect(res.body.login).equal('login2')
+                   expect(res.body).to.have.property('senha')
+                   expect(res.body.senha).equal('1234')
+                   done()
+                })
+            })
+        })
+    })
+    describe('DELETE', () => {
+        it('Check delete not found', (done) => {
+            api.delete('/users/000000000000000000000000')
+            .set('Accept', 'application/json; charset=utf-8')
+            .expect(404)
+            .end((err, res) => {
+                if(err) throw err
+                expect(res.status).equal(404)
+                done()
+            })
+        })
+        it('Check delete with success', (done) => {
+            api.delete(`/users/${insertedUserId}`)
+            .set('Accept', 'application/json; charset=utf-8')
+            .expect(204)
+            .end((err, res) => {
+                if(err) throw err
+                expect(res.status).equal(204)
+                done()
+            })
+        })
+    })
 })
