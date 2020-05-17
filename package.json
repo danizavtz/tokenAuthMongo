@@ -9,7 +9,7 @@
     "lint": "./node_modules/.bin/eslint ./server/**/*.js",
     "test": "mocha --reporter spec test/ --exit",
     "coverage": "nyc mocha --exit --reporter progress ./test/",
-    "seeddb": "node ./seed/seedUser.js"
+    "seeddb": "node ./seeds/seedUser.js"
   },
   "keywords": [
     "express",
