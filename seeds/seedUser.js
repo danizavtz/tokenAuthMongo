@@ -9,7 +9,7 @@ MongoClient.connect(url, { useUnifiedTopology: true }, (err, client) => {
     }
     console.log('Seeding database');
     const password = '#@!thisismysupersecureadminpasswordanditshouldbekeepinsecret!@#'
-    crypto.scrypt(password.toString(), 'salt', parseInt(process.env.SCRYPTPARAM), (err, derivedKey) => {
+    crypto.scrypt(password, 'salt', parseInt(process.env.SCRYPTPARAM), (err, derivedKey) => {
         if (err) {
             throw err
         }
