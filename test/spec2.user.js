@@ -17,6 +17,10 @@ describe('#User', () => {
             })
         })
     })
+    after((done) => {
+        dbi.get().collection('user').deleteMany()//clear collateral effects
+        done()
+    })
     describe('GET', () => {
         it('Check fallback route exist', (done) => {
             api.get('/users')
