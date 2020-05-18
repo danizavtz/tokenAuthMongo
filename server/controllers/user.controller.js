@@ -10,7 +10,7 @@ exports.listUsers = (req, res) => {
 }
 
 exports.createUser = (req, res) => {
-    db.get().collection('user').insertOne(req.body).then((result) => {
+    db.get().collection('user').insertOne({ "name": req.body.name, "login": req.body.login, "password": req.body.password }).then((result) => {
         res.set('location', `/users/${result.insertedId}`)
         res.status(201).end()
     }).catch((err) => {
