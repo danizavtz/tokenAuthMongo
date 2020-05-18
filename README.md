@@ -5,9 +5,18 @@ generate jwt token and persist in mongodb
 ## Instructions to run
 
 1. Copy a env-sample to .env
-`$ cp env-sample .env
+`$ cp env-sample .env`
 2. Fill in the variables with your environment configuration
-3. Seed the database
+3. Install dependencies
+`$ npm install`
+4. Seed the database
 `$ npm run seeddb`
-3. Just start the server
+5. Just start the server
 `$npm run start`
+
+## Run tests and coverage
+
+1. Unit tests
+`$ npm t`
+2. Coverage tests
+`npm run coverage`
