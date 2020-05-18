@@ -36,9 +36,6 @@ exports.getUserById = (req, res) => {
 
 exports.updateUserbyId = (req, res) => {
     db.get().collection('user').updateOne({_id: ObjectId(req.usuario._id)}, {$set: {"name": req.body.name }}).then((result) => {
-        if (result === null) {
-            res.status(404).json({ errors: [{location: "users", msg: "Not found", param: req.usuario._id}]})
-        }
         res.status(200).json(result.result);
     }).catch((err) => {
         res.status(500).json({errors: [{location: "users", msg: err, param: req.usuario._id}]})
