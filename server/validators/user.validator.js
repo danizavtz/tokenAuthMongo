@@ -10,9 +10,12 @@ exports.validationBodyRules = [
     body('password', 'password is required').notEmpty()
 ];
 
-exports.validationPutRules = [
+exports.validationParamRules = [
     param('id', 'id is required').exists(),
-    param('id', 'id must be an hexadecimal (0 to F) with 24 positions').isLength({ min: 24, max: 24 }),
+    param('id', 'id must be an hexadecimal (0 to F) with 24 characters').isLength({ min: 24, max: 24 })
+]
+
+exports.validationPutRules = [
     body('name', 'name is required').exists(),
     body('name', 'name is required').notEmpty()
 ]
