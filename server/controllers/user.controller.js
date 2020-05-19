@@ -44,9 +44,6 @@ exports.updateUserbyId = (req, res) => {
 
 exports.deleteUserbyId = (req, res) => {
     db.get().collection('user').deleteOne({_id: ObjectId(req.usuario._id)}).then((result) => {
-        if (result === null) {
-            res.status(404).json({ errors: [{location: "users", msg: "Not found", param: req.usuario._id}]})
-        }
         res.status(204).end()
     }).catch((err) => {
         res.status(500).json({ errors:[{location: "users", msg: err, param: req.usuario._id}]})
