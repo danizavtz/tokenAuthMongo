@@ -18,20 +18,15 @@ exports.createUser = (req, res) => {
     })
 }
 
-exports.findUserById = (req, res, next) => {
+exports.findUserById = (req, res) => {
     db.get().collection('user').findOne({ _id: new ObjectId(req.params.id) }).then((result) => {
         if (result === null) {
-            res.status(404).json({ errors: [{location: "users", msg: "Not found", param: req.params.id}]})
+            return res.status(404).json({ errors: [{location: "users", msg: "Not found", param: req.params.id}]})
         }
-        req.usuario = result;
-        next()
+        res.status(200).json(result)
     }).catch((err) => {
         res.status(500).json({ errors: [{location: "users", msg: err, param: req.params}]})
     })
-}
-
-exports.getUserById = (req, res) => {
-    res.status(200).json(req.usuario)
 }
 
 exports.updateUserbyId = (req, res) => {
