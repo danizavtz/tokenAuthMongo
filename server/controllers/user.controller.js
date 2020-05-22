@@ -1,5 +1,6 @@
 const db = require('../../db/index');
 const ObjectId = require('mongodb').ObjectID;
+const options = { returnOriginal: false };
 
 exports.listUsers = (req, res) => {
     db.get().collection('user').find({}).toArray().then((users) => {
@@ -35,17 +36,23 @@ exports.getUserById = (req, res) => {
 }
 
 exports.updateUserbyId = (req, res) => {
-    db.get().collection('user').updateOne({_id: ObjectId(req.usuario._id)}, {$set: {"name": req.body.name }}).then((result) => {
-        res.status(200).json(result.result);
+    db.get().collection('user').findOneAndUpdate({_id: ObjectId(req.params.id)}, {$set: {"name": req.body.name }}, options).then((result) => {
+        if (result.value === null) {
+            return res.status(404).json({ errors: [{location: "users", msg: "Not found", param: req.params.id}]})
+        }
+        res.status(200).json(result.value);
     }).catch((err) => {
-        res.status(500).json({errors: [{location: "users", msg: err, param: req.usuario._id}]})
+        res.status(500).json({errors: [{location: "users", msg: err, param: req.params.id}]})
     })
 }
 
 exports.deleteUserbyId = (req, res) => {
-    db.get().collection('user').deleteOne({_id: ObjectId(req.usuario._id)}).then((result) => {
+    db.get().collection('user').findOneAndDelete({_id: ObjectId(req.params.id)}).then((result) => {
+        if (result.value === null) {
+            return res.status(404).json({ errors: [{location: "users", msg: "Not found", param: req.params.id}]})
+        }
         res.status(204).end()
     }).catch((err) => {
-        res.status(500).json({ errors:[{location: "users", msg: err, param: req.usuario._id}]})
+        res.status(500).json({ errors:[{location: "users", msg: err, param: req.params.id}]})
     })
 }

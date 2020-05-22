@@ -360,25 +360,13 @@ describe('#User', () => {
             .expect(200)
             .end((err, res) => {
                 if (err) throw err;
-                expect(res.body).to.have.property('n')
-                expect(res.body.n).equal(1)
-                expect(res.body).to.have.property('nModified')
-                expect(res.body.nModified).equal(1)
-                expect(res.body).to.have.property('ok')
-                expect(res.body.ok).equal(1)
-                api.get(`/users/${insertedUserId}`)
-                .set('Accept', 'application/json; charset=utf-8')
-                .expect(200)
-                .end((err, res) => {
-                    if (err) throw err
-                   expect(res.body).to.have.property('name')
-                   expect(res.body.name).equal('nome2')
-                   expect(res.body).to.have.property('login')
-                   expect(res.body.login).equal('login1')
-                   expect(res.body).to.have.property('password')
-                   expect(res.body.password).equal('123')
-                   done()
-                })
+                expect(res.body).to.have.property('name')
+                expect(res.body.name).equal('nome2')
+                expect(res.body).to.have.property('login')
+                expect(res.body.login).equal('login1')
+                expect(res.body).to.have.property('password')
+                expect(res.body.password).equal('123')
+                done()
             })
         })
         it('Check put update login must not work', (done) => {
@@ -391,26 +379,14 @@ describe('#User', () => {
             })
             .expect(200)
             .end((err, res) => {
-                if (err) throw err;
-                expect(res.body).to.have.property('n')
-                expect(res.body.n).equal(1)
-                expect(res.body).to.have.property('nModified')
-                expect(res.body.nModified).equal(0)
-                expect(res.body).to.have.property('ok')
-                expect(res.body.ok).equal(1)
-                api.get(`/users/${insertedUserId}`)
-                .set('Accept', 'application/json; charset=utf-8')
-                .expect(200)
-                .end((err, res) => {
-                    if (err) throw err
-                   expect(res.body).to.have.property('name')
-                   expect(res.body.name).equal('nome2')
-                   expect(res.body).to.have.property('login')
-                   expect(res.body.login).equal('login1')
-                   expect(res.body).to.have.property('password')
-                   expect(res.body.password).equal('123')
-                   done()
-                })
+                if (err) throw err
+                expect(res.body).to.have.property('name')
+                expect(res.body.name).equal('nome2')
+                expect(res.body).to.have.property('login')
+                expect(res.body.login).equal('login1')
+                expect(res.body).to.have.property('password')
+                expect(res.body.password).equal('123')
+                done()
             })
         })
         it('Check put update senha must not update password', (done) => {
@@ -422,27 +398,15 @@ describe('#User', () => {
                 password: "1234"
             })
             .expect(200)
-            .end((err, res) => {
-                if (err) throw err;
-                expect(res.body).to.have.property('n')
-                expect(res.body.n).equal(1)
-                expect(res.body).to.have.property('nModified')
-                expect(res.body.nModified).equal(0)
-                expect(res.body).to.have.property('ok')
-                expect(res.body.ok).equal(1)
-                api.get(`/users/${insertedUserId}`)
-                .set('Accept', 'application/json; charset=utf-8')
-                .expect(200)
-                .end((err, res) => {
-                   if (err) throw err
-                   expect(res.body).to.have.property('name')
-                   expect(res.body.name).equal('nome2')
-                   expect(res.body).to.have.property('login')
-                   expect(res.body.login).equal('login1')
-                   expect(res.body).to.have.property('password')
-                   expect(res.body.password).equal('123')
-                   done()
-                })
+            .end((err, res) => {                
+                if (err) throw err
+                expect(res.body).to.have.property('name')
+                expect(res.body.name).equal('nome2')
+                expect(res.body).to.have.property('login')
+                expect(res.body.login).equal('login1')
+                expect(res.body).to.have.property('password')
+                expect(res.body.password).equal('123')
+                done()
             })
         })
     })
