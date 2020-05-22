@@ -1,6 +1,5 @@
 const db = require('../../db/index');
 const ObjectId = require('mongodb').ObjectID;
-const options = { returnOriginal: false };
 
 exports.listUsers = (req, res) => {
     db.get().collection('user').find({}).toArray().then((users) => {
@@ -36,6 +35,7 @@ exports.getUserById = (req, res) => {
 }
 
 exports.updateUserbyId = (req, res) => {
+    const options = { returnOriginal: false };
     db.get().collection('user').findOneAndUpdate({_id: ObjectId(req.params.id)}, {$set: {"name": req.body.name }}, options).then((result) => {
         if (result.value === null) {
             return res.status(404).json({ errors: [{location: "users", msg: "Not found", param: req.params.id}]})
