@@ -6,7 +6,7 @@ const expressJwt = require('express-jwt');
 
 const app = express();
 app.disable('x-powered-by');
-app.use('/secure', expressJwt({ secret: process.env.SECRET }));
+app.use('/secure', expressJwt({ secret: process.env.SECRET, algorithms: ['HS256'] }));
 cors({ credentials: true, origin: true });
 app.use(cors());
 app.use(express.json());
