@@ -1,7 +1,7 @@
 require('dotenv').config()
 const MongoClient = require('mongodb').MongoClient;
 const crypto = require('crypto');
-const url = `${process.env.MONGOHOST}:${process.env.MONGOPORT}`
+const url = `mongodb://${process.env.MONGOHOST}:${process.env.MONGOPORT}`
 
 MongoClient.connect(url, { useUnifiedTopology: true }, (err, client) => {
     if (err) {
