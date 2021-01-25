@@ -39,6 +39,12 @@ jobs:
         MONGOHOST: localhost
         MONGOPORT: 27017
         MONGONAME: login
-    - run: npm i -g codecov && npm run coverage:report && codecov -t ${{ secrets.CODECOV_TOKEN }}
+    - run: npm run coverage
       env:
-        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        SECRET: githubactions
+        PORT: 3000
+        SCRYPTPARAM: 15
+        MONGOHOST: localhost
+        MONGOPORT: 27017
+        MONGONAME: login
+    - run: npm i -g codecov && npm run coverage:report && codecov -t ${{ secrets.CODECOV_TOKEN }}
