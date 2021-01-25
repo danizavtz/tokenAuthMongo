@@ -1,3 +1,4 @@
+![Node.js CI](https://github.com/danizavtz/tokenAuthMongo/workflows/Node.js%20CI/badge.svg)
 ![mongodb](https://www.ambientelivre.com.br/media/k2/items/cache/e9432fccf28a953514f077b86e5e657a_L.jpg)
 
 
