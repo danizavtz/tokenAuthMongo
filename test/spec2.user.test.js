@@ -369,7 +369,7 @@ describe('#User', () => {
                 done()
             })
         })
-        it('Check put update login must not work', (done) => {
+        it.skip('Check put update login must not work', (done) => {
             api.put(`/users/${insertedUserId}`)
             .set('Accept', 'application/json; charset=utf-8')
             .send({
