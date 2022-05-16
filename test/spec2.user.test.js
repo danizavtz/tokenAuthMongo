@@ -389,7 +389,7 @@ describe('#User', () => {
                 done()
             })
         })
-        it('Check put update senha must not update password', (done) => {
+        it.skip('Check put update senha must not update password', (done) => {
             api.put(`/users/${insertedUserId}`)
             .set('Accept', 'application/json; charset=utf-8')
             .send({
