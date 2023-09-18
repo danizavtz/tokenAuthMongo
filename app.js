@@ -2,13 +2,12 @@ require('dotenv').config()
 const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
-const expressJwt = require('express-jwt');
+const { expressjwt } = require('express-jwt');
 
 const app = express();
 app.disable('x-powered-by');
-app.use('/secure', expressJwt({ secret: process.env.SECRET, algorithms: ['HS256'] }));
-cors({ credentials: true, origin: true });
-app.use(cors());
+app.use('/secure', expressjwt({ secret: process.env.SECRET, algorithms: ['HS256'] }));
+app.use(cors({ credentials: true, origin: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

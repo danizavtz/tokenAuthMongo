@@ -1,5 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
-const url = `mongodb://${process.env.MONGOHOST}:${process.env.MONGOPORT}`
+const url = `mongodb://${process.env.MONGOHOST}:${process.env.MONGOPORT}/?directConnection=true`
 let dbinstance;
 
 // Use connect method to connect to the server
