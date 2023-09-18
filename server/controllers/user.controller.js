@@ -30,7 +30,7 @@ exports.findUserById = (req, res) => {
 }
 
 exports.updateUserbyId = (req, res) => {
-    const options = { returnOriginal: false };
+    const options = { returnDocument: false };
     db.get().collection('user').findOneAndUpdate({_id: ObjectId(req.params.id)}, {$set: {"name": req.body.name }}, options).then((result) => {
         if (result.value === null) {
             return res.status(404).json({ errors: [{location: "users", msg: "Not found", param: req.params.id}]})

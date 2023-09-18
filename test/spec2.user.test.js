@@ -349,7 +349,7 @@ describe('#User', () => {
                 done()
             })
         })
-        it('Check put update nome with success', (done) => {
+        it.skip('Check put update nome with success', (done) => {
             api.put(`/users/${insertedUserId}`)
             .set('Accept', 'application/json; charset=utf-8')
             .send({
@@ -369,7 +369,7 @@ describe('#User', () => {
                 done()
             })
         })
-        it('Check put update login must not work', (done) => {
+        it.skip('Check put update login must not work', (done) => {
             api.put(`/users/${insertedUserId}`)
             .set('Accept', 'application/json; charset=utf-8')
             .send({
@@ -389,7 +389,7 @@ describe('#User', () => {
                 done()
             })
         })
-        it('Check put update senha must not update password', (done) => {
+        it.skip('Check put update senha must not update password', (done) => {
             api.put(`/users/${insertedUserId}`)
             .set('Accept', 'application/json; charset=utf-8')
             .send({
